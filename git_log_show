@@ -1,0 +1,19 @@
+
+function git_log_show {
+  [ "$2" == "" ] && { echo "Usage: ${FUNCNAME[0]} what-to-search filename-to-be-searches"; return 1; }
+  for ref in $(git log --oneline -S "$1" "$2" | awk '{print $1}'); do git show --color=always "$ref" | less -R +/"$1"; done
+}
+
+# ---
+# moved lines and ignore whitespaces:
+# https://dev.to/cloudx/how-to-color-the-moved-code-in-git-10ei
+# ---
+# https://stackoverflow.com/questions/48165922/why-moved-code-is-not-colored-in-git-diff
+# Zebra: Blocks of moved text of at least 20 alphanumeric characters are detected greedily.
+# Similar to zebra, but additional dimming of uninteresting parts of moved code is performed.
+# The bordering lines of two adjacent blocks are considered interesting, the rest is uninteresting.
+# ---
+# git diff --color-moved=dimmed-zebra
+# git diff --color-moved-ws=allow-indentation-change
+# ---
+
