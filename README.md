@@ -10,4 +10,5 @@ git_rebase_upstream.sh                  # Sync fork - sync my fork from upstream
 git_stash_show.sh                       # show stash in diff-mode
 gitfetchall_and_gitpullall_subdirs.sh   # useful for recursive updating local clones/repositories
 gitlab-runner.sh                        # Use GitLab CI to run tests locally
+search_in_all_git_branches.sh           # search/grep for something in ALL branches
 ```
