@@ -1,0 +1,39 @@
+#!/bin/bash
+# just for syntax-highlighting in vim
+
+# checkout ORIGIN (default branch, regardless if old "master", new "main" or something else)
+alias githead='git checkout $(git remote show origin|grep "HEAD branch"|cut -d":" -f2) && git pull && gitcleanlocal_alreadymerged 2>/dev/null; gitcleanlocal_gone 2>/dev/null'
+# remove all local branches that have already been merged - included in 'githead' alias
+alias gitcleanlocal_alreadymerged='git checkout $(git remote show origin|grep '\''HEAD branch'\''|cut -d'\'':'\'' -f2) && git fetch && git remote prune origin && git branch --merged HEAD | egrep -vE '\''[^-]master$|[^-]main$|[^-]sandbox$|[^-]production$|[^-]dev$|[^-]stage$|[^-]prod$|upstream'\'' | xargs git branch -d'
+# remove all local branches that have "gone" - included in 'githead' alias
+alias gitcleanlocal_gone='git branch -vv | grep "gone" | cut -f3 -d\  | xargs git branch -D'
+
+# because I'm soooo lazy
+alias cdgithub='cd ~/dev/github/'
+alias cdgitlab='cd ~/dev/gitlab/'
+alias g='git'
+alias gst='git status --short'
+
+# also as git-branches-by-date.sh
+# k is referenced but not assigned. [SC2154]
+# shellcheck disable=SC2154
+alias git-branches-by-date='for k in $(git branch|sed s/^..//);do echo -e "$(git log -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" "$k" --)"\\t"$k";done|sort'
+
+# you never now, when you need this ;)
+alias githash='git log|head -1|cut -d " " -f2'
+
+alias gitlog='git log --graph --decorate --stat --pretty --oneline'
+
+# other version of git-open:
+alias gitopen='git remote get-url origin | sed "s/.*@//g" | sed "s/:/\//g" | xargs -I{} open "https://{}"'
+
+# sometimes it's neccessary to squash last commit into previous commit by rebasing (please never do this in default branch!)
+alias gitrebase='git rebase -i $(git rev-list HEAD | sed -n "3p"); echo "ENTER to force-push, STRG+C to abort"; read; [ "$?" == "0" ] && git push -f'
+
+# recursively update/pull all my cloned repos:
+# d is referenced but not assigned. [SC2154]
+# shellcheck disable=SC2154
+alias gitpullall='for d in */; do echo $d; cd $d; git pull; cd ..; done|grep -v "Already up to date."'
+# recursively get status for all my cloned repos:
+alias gitstatusall='for d in */; do echo $d; cd $d; git status; cd ..; done|grep -v "Already up to date."'
+
