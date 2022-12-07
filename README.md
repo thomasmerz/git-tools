@@ -1,6 +1,7 @@
 # git-tools
 ```bash
 aliases                                 # some aliases
+git-branch-clean.sh                     # similar to alias githead, but more colorful
 git-branches-by-date.sh                 # Show git branches by date - useful for showing active branches
 git_create_upstream.sh                  # Sync fork - add a local upstream branch with upstream URL
 git_log_show                            # Usage: git_log_show what-to-search filename-to-be-searches
