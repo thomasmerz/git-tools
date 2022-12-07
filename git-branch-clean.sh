@@ -1,6 +1,6 @@
 #!/bin/bash
 # Originally from Daniel Flassak (dmTECH)
-# shellcheck'ed and shfmt'ed by thomasmerz
+# additional shellcheck and shfmt by thomasmerz
 output=$(tput setaf 7)
 error=$(tput setaf 1)
 reset=$(tput sgr0)
