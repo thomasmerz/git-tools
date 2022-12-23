@@ -24,19 +24,26 @@ line_grey() {
   echo -e "" ## just a newline
 }
 
+error_and_exit() {
+  line_grey
+  perror "$OUT"
+  line_grey
+  exit 1
+}
+
 line_grey
 pinfo "\033[1;36mSync fork - sync my fork from upstream URL via local upstream branch\033[0m"
 line_white
 
 pinfo "Pulling Upstream HEAD into forked branch:"
-if git checkout upstream; then
+if git checkout upstream &>/dev/null; then
   if git pull upstream HEAD; then
-    OUT="$(git push 2>&1)" || { line_grey; perror "$OUT"; exit 1; }; echo "$OUT"
+    OUT="$(git push 2>&1)" || error_and_exit; echo "$OUT"
+  else
+    OUT="$(git pull upstream HEAD 2>&1)" || error_and_exit
   fi
 else
-  perror "Error while checking out upstream. See details above."
-  line_grey
-  exit 1
+  OUT="$(git checkout upstream 2>&1)" || error_and_exit
 fi
 line_grey
 
@@ -46,7 +53,7 @@ line_grey
 
 pinfo "Rebasing my local HEAD with synced fork / upstream HEAD and pushing:"
 if git rebase upstream; then
-  OUT="$(git push 2>&1)" || { line_grey; perror "$OUT"; exit 1; }; echo "$OUT"
+  OUT="$(git push 2>&1)" || error_and_exit
 else
   perror "Error while rebasing upstream. See details above."
   line_grey
