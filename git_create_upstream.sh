@@ -39,7 +39,7 @@ error_and_exit() {
 }
 
 line_grey
-pinfo "\033[1;36mSync fork - add a local upstream branch with upstream URL\033[0m"
+pinfo "\033[1;36mSync fork - add a local upstream branch with upstream URL \033[0m[\033[1;33m$(basename "$(pwd)")\033[0m]"
 line_white
 
 pinfo "Add upstream HEAD URL to my branch."

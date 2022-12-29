@@ -32,7 +32,7 @@ error_and_exit() {
 }
 
 line_grey
-pinfo "\033[1;36mSync fork - sync my fork from upstream URL via local upstream branch\033[0m"
+pinfo "\033[1;36mSync fork - sync my fork from upstream URL via local upstream branch \033[0m[\033[1;33m$(basename "$(pwd)")\033[0m]"
 line_white
 
 pinfo "Pulling Upstream HEAD into forked branch:"
