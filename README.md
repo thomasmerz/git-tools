@@ -1,3 +1,13 @@
+<sup>This project is suitable for:</sup>
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://en.wikipedia.org/wiki/Linux)
+<sup>+</sup>
+[![macOS](https://svgshare.com/i/ZjP.svg)](https://en.wikipedia.org/wiki/MacOS)
+<sup>and has been</sup>
+[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
+<sup>+</sup>
+[![Vim](https://img.shields.io/badge/--019733?logo=vim)](https://www.vim.org/)
+<sup>+❤️</sup>
+
 # git-tools
 ```bash
 aliases                                 # some aliases
